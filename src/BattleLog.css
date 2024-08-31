@@ -19,5 +19,13 @@
 }
 
 .battle-log-interface__start-button {
+	padding: 0.5rem 1rem;
+	background-color: white;
+	border: 1px solid;
+	border-radius: 16px;
+	cursor: pointer;
 
+	&:hover {
+		background-color: grey;
+	}
 }

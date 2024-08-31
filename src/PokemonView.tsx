@@ -4,13 +4,13 @@ import './PokemonView.css';
 export interface PokemonViewData {
   pokemonName: string;
   moveName: string;
-  movePower: number;
+  movePower: string;
   spriteUrl: string;
 }
 
 interface PokemonViewProps {
   isOpponent?: boolean;
-  pokemonData: PokemonViewData;
+  pokemonData: PokemonViewData | null;
 }
 
 function PokemonView(props: PokemonViewProps) {
@@ -22,22 +22,23 @@ function PokemonView(props: PokemonViewProps) {
     return `pokemon-info__move-info ${props.isOpponent && "pokemon-info__move-info--is-opponent"}`;
   }, [props.isOpponent]);
 
-  return (
-    <div className={viewContainerClassString}>
-      <div className="pokemon-info">
-        <span className="pokemon-info__pokemon-name">{props.pokemonData.pokemonName}</span>
-        <div className={moveInfoClassString}>
-          <span className="move-info">{`${props.pokemonData.moveName}: ${props.pokemonData.movePower}`}</span>
+  return <>{
+      props.pokemonData != null && 
+      <div className={viewContainerClassString}>
+        <div className="pokemon-info">
+          <span className="pokemon-info__pokemon-name">{props.pokemonData.pokemonName}</span>
+          <div className={moveInfoClassString}>
+            <span className="move-info">{`${props.pokemonData.moveName}: ${props.pokemonData.movePower}`}</span>
+          </div>
         </div>
+        <div className="separator" />
+        <img
+          className="pokemon-sprite"
+          src={props.pokemonData.spriteUrl}
+          alt={props.pokemonData.pokemonName}
+        />
       </div>
-      <div className="separator" />
-      <img
-        className="pokemon-sprite"
-        src={props.pokemonData.spriteUrl}
-        alt={props.pokemonData.pokemonName}
-      />
-    </div>
-  );
+  }</>;
 }
 
 export default PokemonView;

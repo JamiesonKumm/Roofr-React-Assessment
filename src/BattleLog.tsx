@@ -3,6 +3,7 @@ import './BattleLog.css';
 
 interface BattleLogProps {
   message?: string;
+  executeBattle: () => void;
 }
 
 function BattleLog(props: BattleLogProps) {
@@ -11,10 +12,11 @@ function BattleLog(props: BattleLogProps) {
       <b className="battle-log-title">Battle Log</b>
       <div className="battle-log-interface">
         <div className="battle-log-interface__message-window">
-          <span>{(props.message) ? props.message : "NO MESSAGE"}</span>
+          <span>{(props.message) ? props.message : ""}</span>
         </div>
         <button 
           className="battle-log-interface__start-button"
+          onClick={props.executeBattle}
         >
           Start Battle!
         </button>
